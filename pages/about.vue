@@ -3,12 +3,12 @@
       <div class="flex justify-center basis-1/3">
         <HomeSortButton @sort="sortType = $event"></HomeSortButton>
       </div>
-      <div class="basis-1/3"></div>
+      <div class="basis-1/3 flex flex-col justify-center m-auto"></div>
       <div class="flex justify-center m-auto basis-1/3">
         <HomeMemberForm @send-data="handleData"></HomeMemberForm>
       </div>
     </div>
-    <div class="flex mx-96 max-h-[40rem] overflow-auto scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent">
+    <div class="flex mx-60 max-h-[24rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
         <table class="w-full">
             <thead class="">
                 <tr class="text-left">

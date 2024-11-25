@@ -1,11 +1,11 @@
 <template>
     <div class="flex h-[calc(100vh-57px)]">
-        <div class="basis-1/4 border-r-2 border-slate-800 flex flex-col overflow-auto pt-8 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent f">
+        <div class="basis-1/4 border-r-2 border-slate-800 flex flex-col overflow-auto pt-8 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <div v-for="contact in dataSorted">
                 <HomeContactDetailList :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userNb="contact.userNb" :userId="contact.userId"></HomeContactDetailList>
             </div>
         </div>
-        <div class="basis-3/4">
+        <div class="basis-3/4 max-h-screen">
             <div class="flex justify-between">
                 <div class="m-4">
                     <NuxtLink to="/about">
@@ -25,17 +25,17 @@
                 <h1 class="text-4xl text-slate-300 font-bold">{{ fullName }}</h1>
                 <h2 class="text-xl text-slate-400 font-semibold">{{ userDesc }}</h2>
             </div>
-            <div class="mx-40 mt-16 flex flex-col gap-16">
-                <div class="flex gap-8 items-center">
-                    <NuxtImg src="../public/family.svg" class="h-12"></NuxtImg>
+            <div class="mx-16 mt-8 flex flex-col gap-8">
+                <div class="flex gap-6 items-center">
+                    <NuxtImg src="../public/family.svg" class="h-8"></NuxtImg>
                     <h2 class="text-xl font-medium">{{ member.userType }}</h2>
                 </div>
-                <div class="flex gap-8 items-center">
-                    <NuxtImg src="../public/mail.svg" class="h-12"></NuxtImg>
+                <div class="flex gap-6 items-center">
+                    <NuxtImg src="../public/mail.svg" class="h-8"></NuxtImg>
                     <h2 class="text-xl font-medium">{{ member.userEmail }}</h2>
                 </div>
-                <div class="flex gap-8 items-center">
-                    <NuxtImg src="../public/phone.svg" class="h-12"></NuxtImg>
+                <div class="flex gap-6 items-center">
+                    <NuxtImg src="../public/phone.svg" class="h-8"></NuxtImg>
                     <h2 class="text-xl font-medium">{{ member.userPhone }}</h2>
                 </div>
             </div>

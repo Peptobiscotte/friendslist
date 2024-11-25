@@ -102,26 +102,28 @@ const validateForm = function() {
                 <label for="description" class="text-slate-400 text-right">Note</label>
                 <textarea rows="3" v-model="note.value" name="description" id="description" class="text-slate-300 bg-slate-900 border border-slate-700 text-md px-3 py-1 rounded-md col-span-3 focus:outline-none focus:border-slate-300"></textarea>
             </div>
-            <div class="grid grid-rows-3 text-slate-400 items-end justify-end">
-                <div class="flex gap-2">
-                    <input type="radio" name="radio" id="friend" value="friend" checked v-model="contactType">
-                    <label for="radio">Friend</label>
+            <div class="flex justify-between">
+                <div class="grid grid-rows-3 text-slate-400 pl-12">
+                    <div class="flex gap-2">
+                        <input type="radio" name="radio" id="friend" value="friend" checked v-model="contactType">
+                        <label for="radio">Friend</label>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="radio" name="radio" id="family" value="family" v-model="contactType">
+                        <label for="radio">Family</label>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="radio" name="radio" id="other" value="other" v-model="contactType">
+                        <label for="radio">Other</label>
+                    </div>
                 </div>
-                <div class="flex gap-2">
-                    <input type="radio" name="radio" id="family" value="family" v-model="contactType">
-                    <label for="radio">Family</label>
-                </div>
-                <div class="flex gap-2">
-                    <input type="radio" name="radio" id="other" value="other" v-model="contactType">
-                    <label for="radio">Other</label>
-                </div>
+                <div class="flex justify-end mt-8">
+                    <SheetClose>
+                        <button class="bg-slate-300 rounded-md font-semibold px-4 py-2 transition ease-in-out duration-200 delay-75 hover:bg-slate-400">Add Contact</button>
+                    </SheetClose>
+            </div>
             </div>
             <p v-if="isError" class="text-slate-300 font-semibold">Invalid form please check your infos before sending again.</p>
-            <div class="flex justify-end mt-8">
-                <SheetClose>
-                    <button class="bg-slate-300 rounded-md font-semibold px-4 py-2 transition ease-in-out duration-200 delay-75 hover:bg-slate-400">Add Contact</button>
-                </SheetClose>
-            </div>
         </form>
     </SheetContent>
   </Sheet>

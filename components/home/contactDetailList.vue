@@ -1,8 +1,8 @@
 <template>
-    <div class="flex gap-8 px-16 py-4 items-center transition ease-in-out delay-50" :class="activeClass" @click="navigateContact">
-        <NuxtImg :src=imageUrl class="h-16 bg-slate-300 rounded-full"></NuxtImg>
+    <div class="flex gap-4 px-8 py-3 items-center transition ease-in-out delay-50" :class="activeClass" @click="navigateContact">
+        <NuxtImg :src=imageUrl class="h-12 bg-slate-300 rounded-full"></NuxtImg>
         <div class="flex flex-col">
-            <h1 class="text-slate-300 font-semibold text-xl">{{ fullName }}</h1>
+            <h1 class="text-slate-300 font-semibold text-lg">{{ fullName }}</h1>
             <p>{{ userDesc }}</p>
         </div>
     </div>
