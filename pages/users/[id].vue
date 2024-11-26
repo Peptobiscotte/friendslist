@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-[calc(100vh-57px)]">
-        <div class="basis-1/4 border-r-2 border-slate-800 flex flex-col overflow-auto pt-8 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
+        <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto pt-8 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <div v-for="contact in dataSorted">
                 <HomeContactDetailList :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userNb="contact.userNb" :userId="contact.userId"></HomeContactDetailList>
             </div>

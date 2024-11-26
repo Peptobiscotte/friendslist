@@ -8,7 +8,7 @@
         <HomeMemberForm @send-data="handleData"></HomeMemberForm>
       </div>
     </div>
-    <div class="flex mx-60 max-h-[24rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+    <div class="flex mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
         <table class="w-full">
             <thead class="">
                 <tr class="text-left">

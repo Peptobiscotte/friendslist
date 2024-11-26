@@ -12,8 +12,8 @@
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/">Home</NuxtLink></li>
                         <li v-if="route === '/about'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Contacts</li>
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/about">Contacts</NuxtLink></li>
-                        <li v-if="route === '/groups/ff'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Groups</li>
-                        <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/groups/ff">Groups</NuxtLink></li>  
+                        <li v-if="route === groupUrl" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Groups</li>
+                        <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink :to="groupUrl">Groups</NuxtLink></li>  
                     </ul> 
                 </div>
                 <div class="basis-3/5 flex justify-end">
@@ -24,8 +24,9 @@
                             <div class="border-r-2 border-slate-800 h-8"></div>
                         </div>
                     </div>
-                    <div class="flex justify-center items-center">
-                        <NuxtLink to="/" class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">Sign Up</NuxtLink>
+                    <div class="flex justify-center items-center gap-2">
+                        <NuxtLink to="/signup" class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">Sign Up</NuxtLink>
+                        <NuxtLink to="/signin" class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">Sign In</NuxtLink>
                     </div>
                 </div>
             </nav>
@@ -36,6 +37,9 @@
 <script setup>
 const router = useRouter()
 const route = ref('')
+
+const groups = await $fetch('/api/getGroups')
+const groupUrl = `/groups/${groups[0].groupId}`
 
 watch(() => router.currentRoute.value.fullPath,
   (newFullPath) => {
