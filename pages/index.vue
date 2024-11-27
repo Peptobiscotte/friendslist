@@ -6,8 +6,10 @@
       <div class="flex justify-center text-center">
           <p class="max-w-4xl text-pretty text-xl">We designed FriendsList with one goal in mind: to make it easy for you to keep track of the people who matter most. Whether you're looking to store personal connections, professional contacts, or group lists, FriendsList provides a seamless solution to ensure you never lose touch.</p>
       </div>
-      <div class="">
-          <NuxtLink to="/about" class="transition delay-50 duration-500 hover:translate-y-10 ease-in-out text-lg border-2 border-slate-700 rounded-md p-3 hover:bg-slate-700 hover:text-slate-300">Sign up to get started!</NuxtLink>
+      <div class="flex flex-col items-center gap-4">
+          <NuxtLink to="/signup" class="transition delay-50 duration-500 ease-in-out text-lg border-2 border-slate-700 rounded-md p-3 hover:bg-slate-700 hover:text-slate-300">Sign up to get started!</NuxtLink>
+            <p>or</p>
+          <NuxtLink to="/signin" class="transition delay-50 duration-500 ease-in-out text-lg border-2 border-slate-700 rounded-md p-3 hover:bg-slate-700 hover:text-slate-300">Sign in</NuxtLink>
       </div>
   </div>
   <div class="flex mt-32 mx-32">

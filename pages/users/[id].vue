@@ -49,28 +49,50 @@ import { computed } from 'vue';
 const router = useRouter()
 const route = useRoute()
 const id = route.params.id
+const data = ref([])
+const dataSorted = ref([])
+const member = ref('')
+const userDesc = ref('')
 
-const data = await $fetch('/api/getMembers')
-const dataSorted = data.sort((a, b) => a.userName.localeCompare(b.userName))
+const userId = ref('')
 
-const [member] = data.filter((d) => d.userId === id)
+onMounted( async () => {
+    userId.value = localStorage.getItem('userId')
+    
+    const dataU = await $fetch('/api/getMembers', {
+        query: {
+            id: userId.value
+        }
+    })
+    dataSorted.value = dataU.sort((a, b) => a.userName.localeCompare(b.userName))
+    
+    console.log(dataU[0].userId)
+    console.log(id)
 
-const userDesc = member.userDesc
+    const [memberDest] = dataU.filter((d) => d.userId === id)
+    console.log(memberDest)
+    
+    member.value = memberDest
+    userDesc.value = memberDest.userDesc
+})
+
+
+
 
 const fullName = computed(() => {
-    return member.userName + ' ' + member.userLastName
+    return member.value.userName + ' ' + member.value.userLastName
 })
 
 const imageUrl = computed(() => {
-    if(member.userNb === 1) return '../public/chameleon.svg'
-    if(member.userNb === 2) return '../public/butterfly.svg'
-    if(member.userNb === 3) return '../public/elk.svg'
-    if(member.userNb === 4) return '../public/mianyang.svg'
-    if(member.userNb === 5) return '../public/octopus.svg'
-    if(member.userNb === 6) return '../public/rooster.svg'
-    if(member.userNb === 7) return '../public/toucan.svg'
-    if(member.userNb === 8) return '../public/turtle.svg'
-    if(member.userNb === 9) return '../public/whale.svg'
-    if(member.userNb === 10) return '../public/giraffe.svg'
+    if(member.value.userNb === 1) return '../public/chameleon.svg'
+    if(member.value.userNb === 2) return '../public/butterfly.svg'
+    if(member.value.userNb === 3) return '../public/elk.svg'
+    if(member.value.userNb === 4) return '../public/mianyang.svg'
+    if(member.value.userNb === 5) return '../public/octopus.svg'
+    if(member.value.userNb === 6) return '../public/rooster.svg'
+    if(member.value.userNb === 7) return '../public/toucan.svg'
+    if(member.value.userNb === 8) return '../public/turtle.svg'
+    if(member.value.userNb === 9) return '../public/whale.svg'
+    if(member.value.userNb === 10) return '../public/giraffe.svg'
 })
 </script>

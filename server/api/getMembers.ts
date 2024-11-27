@@ -1,5 +1,9 @@
 export default defineEventHandler(async (event) => {
-    const response =  await fetch('https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/members.json')
+
+    const query = getQuery(event)
+    const userId = query.id
+
+    const response =  await fetch(`https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/${userId}/members.json`)
     const data = await response.json()
 
     const members = [];

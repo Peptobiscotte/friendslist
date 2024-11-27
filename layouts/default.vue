@@ -7,13 +7,17 @@
                         <NuxtImg src="../public/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
                         <h1 class="text-2xl font-black">&ltFriendsList&gt</h1>
                     </NuxtLink>
-                    <ul class="flex py-3 gap-2 font-semibold">
+                    <ul v-if="token" class="flex py-3 gap-2 font-semibold">
                         <li v-if="route === '' || route === '/'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Home</li>
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/">Home</NuxtLink></li>
                         <li v-if="route === '/about'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Contacts</li>
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/about">Contacts</NuxtLink></li>
                         <li v-if="route === groupUrl" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Groups</li>
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink :to="groupUrl">Groups</NuxtLink></li>  
+                    </ul>
+                    <ul v-else class="flex py-3 gap-2 font-semibold">
+                        <li v-if="route === '' || route === '/'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Home</li>
+                        <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/">Home</NuxtLink></li>  
                     </ul> 
                 </div>
                 <div class="basis-3/5 flex justify-end">
@@ -24,7 +28,10 @@
                             <div class="border-r-2 border-slate-800 h-8"></div>
                         </div>
                     </div>
-                    <div class="flex justify-center items-center gap-2">
+                    <div class="flex justify-center items-center gap-2" v-if="token">
+                        <LayoutLogOutDialog></LayoutLogOutDialog>
+                    </div>
+                    <div class="flex justify-center items-center gap-2" v-else>
                         <NuxtLink to="/signup" class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">Sign Up</NuxtLink>
                         <NuxtLink to="/signin" class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">Sign In</NuxtLink>
                     </div>
@@ -38,8 +45,16 @@
 const router = useRouter()
 const route = ref('')
 
+const token = ref('')
+const userId = ref('')
+
 const groups = await $fetch('/api/getGroups')
 const groupUrl = `/groups/${groups[0].groupId}`
+
+onMounted(() => {
+    token.value = localStorage.getItem('token')
+    userId.value = localStorage.getItem('userId')
+})
 
 watch(() => router.currentRoute.value.fullPath,
   (newFullPath) => {

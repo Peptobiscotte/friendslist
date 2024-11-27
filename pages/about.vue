@@ -1,28 +1,37 @@
 <template>
-    <div class="flex mt-8">
-      <div class="flex justify-center basis-1/3">
-        <HomeSortButton @sort="sortType = $event"></HomeSortButton>
-      </div>
-      <div class="basis-1/3 flex flex-col justify-center m-auto"></div>
-      <div class="flex justify-center m-auto basis-1/3">
-        <HomeMemberForm @send-data="handleData"></HomeMemberForm>
+    <div v-if="!token">
+      <div class="flex flex-col items-center gap-8 justify-center mt-20 text-slate-300">
+        <h1 class="max-w-5xl text-center text-6xl font-bold">Sign in to access your contacts!</h1>
+        <NuxtLink to="/signin" class=" border text-slate-400 border-slate-700 text-lg py-2 px-4 rounded-md hover:bg-slate-700 hover:text-slate-300 transition ease-in-out duration-300">Sign in</NuxtLink>
       </div>
     </div>
-    <div class="flex mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
-        <table class="w-full">
-            <thead class="">
-                <tr class="text-left">
-                    <th class="py-4 pl-8 font-normal">Name  <button @click="changeArrowClass"><NuxtImg src="../public/arrowup.svg" class="h-3 transition ease-in-out duration-150 translate-y-0.5" :class="arrowClass"></NuxtImg></button></th>
-                    <th class="font-normal">Mail</th>
-                    <th class="font-normal">Phone</th>
-                    <th class="font-normal">Category</th>
-                </tr>
-            </thead>
-            <tbody v-for="contact in usersHelp">
-                <HomeContactTable :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userEmail="contact.userEmail" :userPhone="contact.userPhone" :userType="contact.userType" :userId="contact.userId" :userNb="contact.userNb"></HomeContactTable>
-            </tbody>
-        </table>
+    <div v-else>
+      <div class="flex mt-8">
+        <div class="flex justify-center basis-1/3">
+          <HomeSortButton @sort="sortType = $event"></HomeSortButton>
+        </div>
+        <div class="basis-1/3 flex flex-col justify-center m-auto"></div>
+        <div class="flex justify-center m-auto basis-1/3">
+          <HomeMemberForm @send-data="handleData"></HomeMemberForm>
+        </div>
+      </div>
+      <div class="flex mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+          <table class="w-full">
+              <thead class="">
+                  <tr class="text-left">
+                      <th class="py-4 pl-8 font-normal">Name  <button @click="changeArrowClass"><NuxtImg src="../public/arrowup.svg" class="h-3 transition ease-in-out duration-150 translate-y-0.5" :class="arrowClass"></NuxtImg></button></th>
+                      <th class="font-normal">Mail</th>
+                      <th class="font-normal">Phone</th>
+                      <th class="font-normal">Category</th>
+                  </tr>
+              </thead>
+              <tbody v-for="contact in usersHelp">
+                  <HomeContactTable :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userEmail="contact.userEmail" :userPhone="contact.userPhone" :userType="contact.userType" :userId="contact.userId" :userNb="contact.userNb"></HomeContactTable>
+              </tbody>
+          </table>
+      </div>
     </div>
+    
   </template>
   
   <script setup>
@@ -31,6 +40,9 @@
 
   const { toast } = useToast()
   const router = useRouter()
+
+  const token = ref('')
+  const userId = ref('')
 
   const sortType = ref('')
   const users = ref([])
@@ -50,8 +62,16 @@
   
   
   onMounted(async () => {
+
+    token.value = localStorage.getItem('token')
+    userId.value = localStorage.getItem('userId')
+
     if(sortType.value === '') {
-    const data = await $fetch('/api/getMembers')
+    const data = await $fetch('/api/getMembers', {
+      query: {
+        id: userId.value
+      }
+    })
     users.value = data.sort((a, b) => a.userName.localeCompare(b.userName));
     usersHelp.value = data.sort((a, b) => a.userName.localeCompare(b.userName));
   }
@@ -69,6 +89,9 @@
     try {
       const { data, error } = await useFetch('/api/addMember', {
         method: 'POST',
+        query: {
+            id: userId.value
+        },
         body: {
           userName: contact.firstName,
           userLastName: contact.lastName,

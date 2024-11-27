@@ -29,6 +29,7 @@
 const store = useStore()
 const formIsValid = ref(false)
 const isError = ref(false)
+let timer
 
 const email = reactive({value: '', valid: true})
 const password = reactive({value: '', valid: true})
@@ -56,9 +57,18 @@ const submitForm = async function() {
     store.value.token = data.value.idToken
     store.value.userId = data.value.localId
     store.value.tokenExpiration = data.value.expiresIn
-    store.value.registered = data.value.registered
 
-    console.log(store)
+    const expiresIn = +data.value.expiresIn *1000
+    const expirationDate = new Date().getTime() + expiresIn
+
+    localStorage.setItem('token', data.value.idToken)
+    localStorage.setItem('userId', data.value.localId)
+    localStorage.setItem('tokenExpiration', expirationDate)
+
+    reloadNuxtApp({
+        path: '/about'
+    })
+
 }
 
 const validateForm = function() {
