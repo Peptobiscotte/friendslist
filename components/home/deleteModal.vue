@@ -11,6 +11,9 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 
+const props = defineProps(['id', 'token'])
+console.log(props)
+
 const router = useRouter()
 const route = useRoute()
 const id = route.params.id
@@ -18,7 +21,9 @@ const id = route.params.id
 const deleteM = async() => {
      await useFetch('/api/deleteMember', {
         query: {
-            id
+          id,
+          userId: props.id,
+          token: props.token
         }
      })
      await router.push('/about')

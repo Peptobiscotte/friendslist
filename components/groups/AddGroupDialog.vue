@@ -20,7 +20,7 @@ interface Contact {
   userName: string
 }
 
-const props = defineProps(['contacts'])
+const props = defineProps(['contacts', 'userId', 'token'])
 const contacts = props.contacts
 
 const addedContact = ref<Contact[]>([])
@@ -40,7 +40,11 @@ const submitForm = async() => {
     try {
         await useFetch('/api/addGroup', {
             method: 'POST',
-            body: data
+            body: data,
+            query: {
+              id: props.userId,
+              token: props.token
+            }
         })
         toast({
         title: 'New Group Created!',

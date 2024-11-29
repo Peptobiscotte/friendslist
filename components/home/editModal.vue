@@ -15,7 +15,9 @@ import { useToast } from '@/components/ui/toast/use-toast'
 
 const { toast } = useToast()
 
-const props = defineProps(['userName', 'userLastName', 'userDesc', 'userEmail', 'userPhone', 'userType', 'userId', 'userNb'])
+const props = defineProps(['userName', 'userLastName', 'userDesc', 'userEmail', 'userPhone', 'userType', 'userId', 'userNb', 'id', 'token'])
+console.log(props.userName)
+
 const firstName = reactive({value: props.userName, valid: true})
 const lastName = reactive({value: props.userLastName, valid: true})
 const email = reactive({value: props.userEmail, valid: true})
@@ -47,7 +49,9 @@ const submitForm = async function() {
      await useFetch('/api/editMember', {
         method: 'PATCH',
         query: {
-            id
+            id,
+            userId: props.id,
+            token: props.token
         },
         body: {
           userName: contact.firstName,

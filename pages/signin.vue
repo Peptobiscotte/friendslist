@@ -54,16 +54,18 @@ const submitForm = async function() {
         body: userInfos
     })
 
-    store.value.token = data.value.idToken
-    store.value.userId = data.value.localId
-    store.value.tokenExpiration = data.value.expiresIn
-
     const expiresIn = +data.value.expiresIn *1000
     const expirationDate = new Date().getTime() + expiresIn
 
-    localStorage.setItem('token', data.value.idToken)
-    localStorage.setItem('userId', data.value.localId)
-    localStorage.setItem('tokenExpiration', expirationDate)
+    // localStorage.setItem('token', data.value.idToken)
+    // localStorage.setItem('userId', data.value.localId)
+    // localStorage.setItem('tokenExpiration', expirationDate)
+
+    const token = useCookie('token')
+    token.value = data.value.idToken
+
+    const userId = useCookie('userId')
+    userId.value = data.value.localId
 
     reloadNuxtApp({
         path: '/about'

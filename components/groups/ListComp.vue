@@ -12,6 +12,7 @@
 <script setup>
 const props = defineProps(['groupName', 'groupMembers', 'contacts', 'groupId'])
 
+
 const groupMembersId = props.groupMembers.map(obj => obj.userId)
 
 const activeMembers = props.contacts.filter(contact => groupMembersId.includes(contact.userId))

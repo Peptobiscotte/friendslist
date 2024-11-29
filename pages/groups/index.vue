@@ -20,9 +20,7 @@
                 </div>
             </div>
             <div class="flex flex-col items-center gap-4">
-                <NuxtImg :src="imageUrl(activeMembers[0].userNb)" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
-                <h1 class="text-4xl text-slate-300 font-bold">{{ activeGroup.groupName }}</h1>
-                <h2 class="text-xl text-slate-400 font-semibold">{{ allNamesString }}</h2>
+                <h1>This is your groups</h1>
             </div>
         </div>
     </div>
@@ -44,37 +42,4 @@ const token = useCookie('token')
             token: token.value
         }
     })
-    
-
-const route = useRoute()
-const id = route.params.groups
-
-const [activeGroup] = groups.filter((group) => group.groupId === id)
-const groupMembersId = activeGroup.groupMembers.map(key => key.userId)
-const activeMembers = contacts.filter(contact => groupMembersId.includes(contact.userId))
-
-const allNames = activeMembers.map((member) => member.userName)
-
-const allNamesString = computed(() => {
-    if(allNames.length <= 3) {
-        const stringNames = allNames.join(', ')
-        return stringNames
-    } else {
-        const stringNames = allNames.slice(0,3).join(', ')
-        return stringNames + ' ' + 'and others'
-    }
-})
-
-const imageUrl = function(num) {
-    if(num === 1) return '../public/chameleon.svg'
-    if(num === 2) return '../public/butterfly.svg'
-    if(num === 3) return '../public/elk.svg'
-    if(num === 4) return '../public/mianyang.svg'
-    if(num === 5) return '../public/octopus.svg'
-    if(num === 6) return '../public/rooster.svg'
-    if(num === 7) return '../public/toucan.svg'
-    if(num === 8) return '../public/turtle.svg'
-    if(num === 9) return '../public/whale.svg'
-    if(num === 10) return '../public/giraffe.svg'
-}
 </script>

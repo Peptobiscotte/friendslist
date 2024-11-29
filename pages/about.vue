@@ -1,11 +1,11 @@
 <template>
-    <div v-if="!token">
+    <!-- <div v-if="!userId">
       <div class="flex flex-col items-center gap-8 justify-center mt-20 text-slate-300">
         <h1 class="max-w-5xl text-center text-6xl font-bold">Sign in to access your contacts!</h1>
         <NuxtLink to="/signin" class=" border text-slate-400 border-slate-700 text-lg py-2 px-4 rounded-md hover:bg-slate-700 hover:text-slate-300 transition ease-in-out duration-300">Sign in</NuxtLink>
       </div>
-    </div>
-    <div v-else>
+    </div> -->
+    <div>
       <div class="flex mt-8">
         <div class="flex justify-center basis-1/3">
           <HomeSortButton @sort="sortType = $event"></HomeSortButton>
@@ -41,8 +41,7 @@
   const { toast } = useToast()
   const router = useRouter()
 
-  const token = ref('')
-  const userId = ref('')
+  const testing = ref('hello')
 
   const sortType = ref('')
   const users = ref([])
@@ -63,13 +62,14 @@
   
   onMounted(async () => {
 
-    token.value = localStorage.getItem('token')
-    userId.value = localStorage.getItem('userId')
+    const userId = useCookie('userId')
+    const token = useCookie('token')
 
     if(sortType.value === '') {
     const data = await $fetch('/api/getMembers', {
       query: {
-        id: userId.value
+        id: userId.value,
+        token: token.value
       }
     })
     users.value = data.sort((a, b) => a.userName.localeCompare(b.userName));
@@ -87,10 +87,13 @@
   
   const handleData = async (contact) => {
     try {
+      const userId = useCookie('userId')
+      const token = useCookie('token')
       const { data, error } = await useFetch('/api/addMember', {
         method: 'POST',
         query: {
-            id: userId.value
+            id: userId.value,
+            token: token.value
         },
         body: {
           userName: contact.firstName,

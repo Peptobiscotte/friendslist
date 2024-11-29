@@ -10,9 +10,15 @@ import {
 } from '@/components/ui/dialog'
 
 const handleLogout = function() {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('tokenExpiration')
+    // localStorage.removeItem('token')
+    // localStorage.removeItem('userId')
+    // localStorage.removeItem('tokenExpiration')
+
+  const userId = useCookie('userId')
+  userId.value = null
+  const token = useCookie('token')
+    token.value = null
+
     reloadNuxtApp({
       path: '/'
     })

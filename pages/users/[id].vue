@@ -16,8 +16,8 @@
                     </NuxtLink>
                 </div>
                 <div class="flex pr-8 gap-4">
-                    <HomeEditModal :userName="member.userName" :userLastName="member.userLastName" :userDesc="member.userDesc" :userEmail="member.userEmail" :userPhone="member.userPhone" :userType="member.userType" :userNb="member.userNb" :userId="member.userId"></HomeEditModal>
-                    <HomeDeleteModal ></HomeDeleteModal>
+                    <HomeEditModal :id="userId" :token="token" :userName="member.userName" :userLastName="member.userLastName" :userDesc="member.userDesc" :userEmail="member.userEmail" :userPhone="member.userPhone" :userType="member.userType" :userNb="member.userNb" :userId="member.userId"></HomeEditModal>
+                    <HomeDeleteModal :id="userId" :token="token"></HomeDeleteModal>
                 </div>
             </div>
             <div class="flex flex-col items-center gap-4">
@@ -45,6 +45,8 @@
 
 <script setup>
 import { computed } from 'vue';
+const userId = useCookie('userId')
+const token = useCookie('token')
 
 const router = useRouter()
 const route = useRoute()
@@ -54,27 +56,23 @@ const dataSorted = ref([])
 const member = ref('')
 const userDesc = ref('')
 
-const userId = ref('')
 
-onMounted( async () => {
-    userId.value = localStorage.getItem('userId')
+
+    
     
     const dataU = await $fetch('/api/getMembers', {
         query: {
-            id: userId.value
+            id: userId.value,
+            token: token.value
         }
     })
-    dataSorted.value = dataU.sort((a, b) => a.userName.localeCompare(b.userName))
-    
-    console.log(dataU[0].userId)
-    console.log(id)
+    dataSorted.value = dataU.sort((a, b) => a.userName.localeCompare(b.userName))   
 
     const [memberDest] = dataU.filter((d) => d.userId === id)
-    console.log(memberDest)
     
     member.value = memberDest
     userDesc.value = memberDest.userDesc
-})
+
 
 
 

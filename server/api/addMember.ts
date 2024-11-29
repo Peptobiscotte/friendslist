@@ -1,10 +1,11 @@
 export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const userId = query.id
+    const token = query.token
 
     try {
       const body = await readBody(event)
-      const response = await fetch(`https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/${userId}/members.json`, {
+      const response = await fetch(`https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/${userId}/members.json?auth=${token}`, {
         method: 'POST',
         body: JSON.stringify(body) 
       })

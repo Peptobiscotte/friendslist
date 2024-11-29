@@ -1,3 +1,4 @@
+import { useCookie } from "nuxt/app"
 
 
 export default defineEventHandler(async (event) => {
