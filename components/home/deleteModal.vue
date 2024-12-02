@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/alert-dialog'
 
 const props = defineProps(['id', 'token'])
-console.log(props)
 
 const router = useRouter()
 const route = useRoute()

@@ -3,8 +3,11 @@ import { useCookie } from "nuxt/app"
 
 export default defineEventHandler(async (event) => {
     try {
+      const config = useRuntimeConfig()
+      const signInUrl = config.public.SIGN_IN
+
       const body = await readBody(event)
-      const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCeqnTc5It3dsXpvwF_DizdWWVhgMznEHA', {
+      const response = await fetch(signInUrl, {
         method: 'POST',
         body: JSON.stringify(body) 
       })

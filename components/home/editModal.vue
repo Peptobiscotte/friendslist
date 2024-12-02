@@ -16,7 +16,6 @@ import { useToast } from '@/components/ui/toast/use-toast'
 const { toast } = useToast()
 
 const props = defineProps(['userName', 'userLastName', 'userDesc', 'userEmail', 'userPhone', 'userType', 'userId', 'userNb', 'id', 'token'])
-console.log(props.userName)
 
 const firstName = reactive({value: props.userName, valid: true})
 const lastName = reactive({value: props.userLastName, valid: true})

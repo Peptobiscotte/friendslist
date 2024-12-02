@@ -2,8 +2,11 @@
 
 export default defineEventHandler(async (event) => {
     try {
+      const config = useRuntimeConfig()
+      const signUpUrl = config.public.SIGN_UP
+
       const body = await readBody(event)
-      const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCeqnTc5It3dsXpvwF_DizdWWVhgMznEHA', {
+      const response = await fetch(signUpUrl, {
         method: 'POST',
         body: JSON.stringify(body) 
       })

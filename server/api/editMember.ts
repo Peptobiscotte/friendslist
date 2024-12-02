@@ -3,12 +3,14 @@ export default defineEventHandler(async (event) => {
     const memberId = query.id
     const userId = query.userId
     const token = query.token
+    const config = useRuntimeConfig()
+    const dbURL = config.public.DB
 
     const body = await readBody(event)
     
     
     try {
-      const response = await fetch(`https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/${userId}/members/${memberId}.json?auth=${token}`, {
+      const response = await fetch(`${dbURL}/${userId}/members/${memberId}.json?auth=${token}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'

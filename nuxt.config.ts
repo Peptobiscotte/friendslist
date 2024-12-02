@@ -4,9 +4,14 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxt/image',
   ],
-
-  
-
+  runtimeConfig: {
+    public: {
+      EMAIL: process.env.EMAIL,
+      DB: process.env.MY_DB,
+      SIGN_IN: process.env.SIGN_IN,
+      SIGN_UP: process.env.SIGN_UP,
+    }
+  },
   shadcn: {
     /**
      * Prefix for all the imported component

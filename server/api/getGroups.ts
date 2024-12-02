@@ -3,8 +3,10 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const userId = query.id
   const token = query.token
+  const config = useRuntimeConfig()
+    const dbURL = config.public.DB
 
-    const response =  await fetch(`https://friendslist-57aea-default-rtdb.europe-west1.firebasedatabase.app/${userId}/groups.json?auth=${token}`)
+    const response =  await fetch(`${dbURL}/${userId}/groups.json?auth=${token}`)
     const data = await response.json()
 
     const groups = [];
