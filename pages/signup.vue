@@ -8,11 +8,23 @@
                 <div class="grid grid-rows-2 gap-4">
                     <div class="grid grid-cols-4">
                         <label for="email" class="col-span-1 mr-8 text-slate-200">Email</label>
-                        <input @focus="emailClear" v-model.trim="email.value" type="email" name="email" id="email" class="bg-slate-800 border border-slate-600 rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="errorStyleMail">
+                        <input @focus="inputClear" v-model.trim="formData.email.value" type="email" name="email" id="email" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.email.class">
+                    </div>
+                    <div class="grid grid-cols-4">
+                        <label for="firstName" class="col-span-1 mr-8 text-slate-200">First Name</label>
+                        <input @focus="inputClear" v-model.trim="formData.firstName.value" type="text" name="firstName" id="firstName" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.firstName.class">
+                    </div>
+                    <div class="grid grid-cols-4">
+                        <label for="lastName" class="col-span-1 mr-8 text-slate-200">Last Name</label>
+                        <input @focus="inputClear" v-model.trim="formData.lastName.value" type="text" name="lastName" id="lastName" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.lastName.class">
+                    </div>
+                    <div class="grid grid-cols-4">
+                        <label for="phone" class="col-span-1 mr-8 text-slate-200">Phone number</label>
+                        <input @focus="inputClear" v-model.trim="formData.phone.value" type="tel" name="phone" id="phone" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.phone.class">
                     </div>
                     <div class="grid grid-cols-4">
                         <label for="password" class="col-span-1 mr-8 text-slate-200">Password</label>
-                        <input @focus="passClear" v-model.trim="password.value" type="password" name="password" id="password" class="bg-slate-800 border border-slate-600 rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="errorStyle">
+                        <input @focus="inputClear" v-model.trim="formData.password.value" type="password" name="password" id="password" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.password.class">
                     </div>
                 </div>
                 <p v-if="!password.valid">Password must be at least 8 characters.</p>
@@ -30,10 +42,21 @@
 const formIsValid = ref(false)
 const isError = ref(false)
 
-const email = reactive({value: '', valid: true})
-const password = reactive({value: '', valid: true})
+const formData = reactive({
+    email: {value: '', valid: true, class:'border-slate-600'},
+    firstName: {value: '', valid: true, class:'border-slate-600'},
+    lastName: {value: '', valid: true, class:'border-slate-600'},
+    password: {value: '', valid: true, class:'border-slate-600'},
+    phone: {value: '', valid: true, class:'border-slate-600'},
+})
 
-const errorStyle = ref('')
+const email = reactive({value: '', valid: true})
+const firstName = reactive({value: '', valid: true})
+const lastName = reactive({value: '', valid: true})
+const password = reactive({value: '', valid: true})
+const phone = reactive({value: '', valid: true})
+
+const errorStylePass = ref('border-slate-600')
 const errorStyleMail = ref('')
 
 const submitForm = async function() {
@@ -43,44 +66,94 @@ const submitForm = async function() {
         return;
       }
     const userInfos = {     
-        email: email.value,
-        password: password.value,
+        email: formData.email.value,
+        password: formData.password.value,
         returnSecureToken: true
     }
-
-    console.log(userInfos)
+    const userInfosExtended = {
+        email: formData.email.value,
+        firstName: formData.firstName.value,
+        lastName: formData.lastName.value,
+        phone: formData.phone.value,
+    }
 
     await useFetch('/api/addUser', {
         method: 'POST',
         body: userInfos
     })
+    const {data} = await useFetch('/api/signUser', {
+        method: 'POST',
+        body: userInfos
+    })
+    
+    const token = useCookie('token')
+    token.value = data.value.idToken
+
+    const userId = useCookie('userId')
+    userId.value = data.value.localId
+
+    await useFetch('/api/addUserInfos', {
+        method: 'POST',
+        body: userInfosExtended,
+        query: {
+            id: userId.value,
+            token: token.value
+        }
+    })
+    reloadNuxtApp({
+        path: '/about'
+    })
 }
 
 const validateForm = function() {
-    password.valid = false
-    email.valid = false
+    formData.password.valid = false
+    formData.email.valid = false
+    formData.firstName.valid = false
+    formData.lastName.valid = false
+    formData.phone.valid = false
     formIsValid.value = true
 
-    if(email.value === '') {
+    const namePattern = /^[A-Za-z]+$/
+
+    if(formData.email.value === '') {
         formIsValid.value = false
-        errorStyleMail.value = 'border-red-500'
+        formData.email.class = 'border-red-500'
     } else {
-        email.valid = true
+        formData.email.valid = true
     }
-    if(password.value === '' || password.value.length < 8) {
+    if(formData.firstName.value === '' || !namePattern.test(formData.firstName.value)) {
+        formData.firstName.class = 'border-red-500'
         formIsValid.value = false
-        errorStyle.value = 'border-red-500'
     } else {
-        password.valid = true
+        formData.firstName.valid = true
+    }
+    if(formData.lastName.value === '' || !namePattern.test(formData.lastName.value)) {
+        formData.lastName.class = 'border-red-500'
+        formIsValid.value = false
+    } else {
+        formData.lastName.valid = true
+    }
+    if(formData.phone.value === '' || formData.phone.value.length !== 10 || namePattern.test(formData.phone.value)) {
+        formData.phone.class = 'border-red-500'
+        formIsValid.value = false
+    } else {
+        formData.phone.valid = true
+    }
+    if(formData.password.value === '' || formData.password.value.length < 8) {
+        formData.password.class = 'border-red-500'
+        formIsValid.value = false
+    } else {
+        formData.password.valid = true
     }
 }
 
-const passClear = function() {
-    password.valid = true
-    errorStyle.value = ''
+const errorStyle = function(comp) {
+    formData[comp].class = 'border-red-500'
 }
-const emailClear = function() {
-    email.valid = true
-    errorStyleMail.value = ''
+
+const inputClear = function(event) {
+    const target = event.target.id
+    formData[target].value = ''
+    formData[target].class = 'border-slate-600'
 }
 </script>
