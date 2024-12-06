@@ -18,6 +18,8 @@ const handleLogout = function() {
   userId.value = null
   const token = useCookie('token')
     token.value = null
+  const expiration = useCookie('expiration')
+  expiration.value = null  
 
     reloadNuxtApp({
       path: '/'

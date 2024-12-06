@@ -27,7 +27,13 @@
                         <div class="flex items-center">
                             <div class="border-r-2 border-slate-800 h-8"></div>
                         </div>
-                        <p v-if="activeUserRef">{{ activeUserRef.firstName }}</p>
+                        <div v-if="activeUserRef" class="relative">
+                            <button @click="goToUser">{{ activeUserRef.firstName }}</button>
+                            <span v-if="hasNotif" class="absolute left-10 rounded-full w-2 h-2">                                
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span class="relative bottom-[11px] left-[1px] inline-flex rounded-full h-1.5 w-1.5 bg-sky-500 opacity-75"></span>
+                            </span>
+                        </div>
                     </div>
                     <div>
                     </div>
@@ -55,6 +61,7 @@ const token = useCookie('token')
 const activeUserRef = ref(null)
 const allUserNameRef = ref(null)
 const allUsersInfos = ref(null)
+const requestsArrRef = ref(null)
 
 const groups = await $fetch('/api/getGroups', {
     query: {
@@ -94,5 +101,22 @@ watch(() => router.currentRoute.value.fullPath,
                 return obj.firstName + ' ' + obj.lastName
             })
             allUserNameRef.value = allUserName
+            
+            const requests = await useFetch('/api/getFriendRequest', {
+              query: {
+                  token: token.value,
+                  id: activeUserRef.value.userId
+              }
+          })
+          const requestsArr = toRaw(requests.data.value)
+          requestsArrRef.value = requestsArr
         }
+
+const goToUser = function() {
+    const activeUserUrl = activeUserRef.value.userId
+    navigateTo(`/${activeUserUrl}`)
+}
+const hasNotif = computed(() => {
+    return requestsArrRef.value.length > 0
+})
 </script>

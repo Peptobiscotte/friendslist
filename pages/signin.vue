@@ -54,18 +54,20 @@ const submitForm = async function() {
         body: userInfos
     })
 
+    
     const expiresIn = +data.value.expiresIn *1000
     const expirationDate = new Date().getTime() + expiresIn
-
-    // localStorage.setItem('token', data.value.idToken)
-    // localStorage.setItem('userId', data.value.localId)
-    // localStorage.setItem('tokenExpiration', expirationDate)
-
+    
+    
     const token = useCookie('token')
     token.value = data.value.idToken
-
+    
     const userId = useCookie('userId')
     userId.value = data.value.localId
+
+    const expirationMs = useCookie('expiration')
+    expirationMs.value = expirationDate
+    
 
     reloadNuxtApp({
         path: '/about'
