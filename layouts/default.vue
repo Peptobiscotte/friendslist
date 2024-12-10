@@ -28,8 +28,8 @@
                             <div class="border-r-2 border-slate-800 h-8"></div>
                         </div>
                         <div v-if="activeUserRef" class="relative">
-                            <button @click="goToUser">{{ activeUserRef.firstName }}</button>
-                            <span v-if="hasNotif" class="absolute left-10 rounded-full w-2 h-2">                                
+                            <UserPopover :userId="activeUserRef.userId" :firstName="activeUserRef.firstName"></UserPopover>
+                            <span v-if="hasNotif" class="absolute left-15 rounded-full w-2 h-2">                                
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                                 <span class="relative bottom-[11px] left-[1px] inline-flex rounded-full h-1.5 w-1.5 bg-sky-500 opacity-75"></span>
                             </span>
