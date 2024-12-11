@@ -17,7 +17,7 @@
           <h1>Organize Contacts Easily</h1>
           <h2 class="text-xl text-slate-400 text-center max-w-md">Create custom categories, tags, and filters for efficient access and organization.</h2>
           <div class="border-2 border-slate-700 rounded-md w-60 h-60 bg-slate-800 flex justify-center items-center">
-              <NuxtImg src="../public/toucan.svg" class="w-60"></NuxtImg>
+              <NuxtImg src="@/public/toucan.svg" class="w-60"></NuxtImg>
           </div>
       </div>
       <div class="basis-1/3 flex flex-col items-center text-center text-2xl text-slate-300 gap-4">
