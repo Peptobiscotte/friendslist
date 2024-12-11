@@ -109,7 +109,7 @@ const validateForm = function() {
 <template>
     <Toaster/>
   <AlertDialog>
-    <AlertDialogTrigger><NuxtImg src="../public/pen.svg" class="w-8"></NuxtImg></AlertDialogTrigger>
+    <AlertDialogTrigger><NuxtImg src="/pen.svg" class="w-8"></NuxtImg></AlertDialogTrigger>
     <AlertDialogContent class="bg-slate-800 border-slate-700">
       <AlertDialogHeader>
         <AlertDialogTitle class="text-slate-300 text-xl">Edit contact infos</AlertDialogTitle>

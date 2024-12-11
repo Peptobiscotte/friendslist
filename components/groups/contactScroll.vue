@@ -10,16 +10,16 @@ const emit = defineEmits(['valid-contacts'])
 const contacts = props.contacts.sort((a: User, b: User) => a.userName.localeCompare(b.userName))
 
 const imageUrl = function(num: number) {
-    if(num === 1) return '../public/chameleon.svg'
-    if(num === 2) return '../public/butterfly.svg'
-    if(num === 3) return '../public/elk.svg'
-    if(num === 4) return '../public/mianyang.svg'
-    if(num === 5) return '../public/octopus.svg'
-    if(num === 6) return '../public/rooster.svg'
-    if(num === 7) return '../public/toucan.svg'
-    if(num === 8) return '../public/turtle.svg'
-    if(num === 9) return '../public/whale.svg'
-    if(num === 10) return '../public/giraffe.svg'
+    if(num === 1) return '/chameleon.svg'
+    if(num === 2) return '/butterfly.svg'
+    if(num === 3) return '/elk.svg'
+    if(num === 4) return '/mianyang.svg'
+    if(num === 5) return '/octopus.svg'
+    if(num === 6) return '/rooster.svg'
+    if(num === 7) return '/toucan.svg'
+    if(num === 8) return '/turtle.svg'
+    if(num === 9) return '/whale.svg'
+    if(num === 10) return '/giraffe.svg'
 }
 
 const selectedContact = ref([])

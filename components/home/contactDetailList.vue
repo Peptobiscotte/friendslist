@@ -30,16 +30,16 @@ const navigateContact = function() {
 }
 
 const imageUrl = computed(() => {
-    if(props.userNb === 1) return '../public/chameleon.svg'
-    if(props.userNb === 2) return '../public/butterfly.svg'
-    if(props.userNb === 3) return '../public/elk.svg'
-    if(props.userNb === 4) return '../public/mianyang.svg'
-    if(props.userNb === 5) return '../public/octopus.svg'
-    if(props.userNb === 6) return '../public/rooster.svg'
-    if(props.userNb === 7) return '../public/toucan.svg'
-    if(props.userNb === 8) return '../public/turtle.svg'
-    if(props.userNb === 9) return '../public/whale.svg'
-    if(props.userNb === 10) return '../public/giraffe.svg'
+    if(props.userNb === 1) return '/chameleon.svg'
+    if(props.userNb === 2) return '/butterfly.svg'
+    if(props.userNb === 3) return '/elk.svg'
+    if(props.userNb === 4) return '/mianyang.svg'
+    if(props.userNb === 5) return '/octopus.svg'
+    if(props.userNb === 6) return '/rooster.svg'
+    if(props.userNb === 7) return '/toucan.svg'
+    if(props.userNb === 8) return '/turtle.svg'
+    if(props.userNb === 9) return '/whale.svg'
+    if(props.userNb === 10) return '/giraffe.svg'
 })
 
 </script>

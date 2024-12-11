@@ -6,7 +6,7 @@
         </div>
         <div class="basis-3/4 2xl:basis-4/5 max-h-screen relative">
             <div class="flex flex-col items-center pt-16 gap-2">
-                <NuxtImg src="../public/giraffe.svg" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
+                <NuxtImg src="/giraffe.svg" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
                 <h1 class="text-2xl font-bold">{{ targetInfosRef.firstName }}</h1>
             </div>
             <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 h-[36rem] mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
@@ -36,7 +36,7 @@
             <div class="bg-slate-900/30 border-slate-800 absolute bottom-0 backdrop-blur w-full p-2 flex justify-center">
                 <div class="flex gap-4">
                     <input @keyup.enter="sendMessage" v-model=typedMessage type="text" class="bg-slate-800 rounded-md w-80 focus:outline-none py-2 px-2">
-                    <button @click="sendMessage"><NuxtImg src="../public/send.svg" class="w-8"></NuxtImg></button>
+                    <button @click="sendMessage"><NuxtImg src="/send.svg" class="w-8"></NuxtImg></button>
                 </div>
             </div>
         </div>

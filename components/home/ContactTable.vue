@@ -4,9 +4,9 @@
                 <NuxtImg :src=imageUrl class="w-8 bg-slate-300 rounded-full p-0.5"></NuxtImg>
                 {{ fullName }}
             </td>
-            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="../public//mail.svg" class="w-4"></NuxtImg>{{ userEmail }}</div></td>
-            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="../public//phone.svg" class="w-4"></NuxtImg>{{ userPhone }}</div></td>
-            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="../public//family.svg" class="w-4"></NuxtImg>{{ userType }}</div></td>
+            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="/mail.svg" class="w-4"></NuxtImg>{{ userEmail }}</div></td>
+            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="/phone.svg" class="w-4"></NuxtImg>{{ userPhone }}</div></td>
+            <td class="text-slate-300"><div class="flex gap-2"><NuxtImg src="/family.svg" class="w-4"></NuxtImg>{{ userType }}</div></td>
         </tr>
 </template>
 
@@ -24,16 +24,16 @@ const navigateContact = function() {
 }
 
 const imageUrl = computed(() => {
-    if(props.userNb === 1) return '../public/chameleon.svg'
-    if(props.userNb === 2) return '../public/butterfly.svg'
-    if(props.userNb === 3) return '../public/elk.svg'
-    if(props.userNb === 4) return '../public/mianyang.svg'
-    if(props.userNb === 5) return '../public/octopus.svg'
-    if(props.userNb === 6) return '../public/rooster.svg'
-    if(props.userNb === 7) return '../public/toucan.svg'
-    if(props.userNb === 8) return '../public/turtle.svg'
-    if(props.userNb === 9) return '../public/whale.svg'
-    if(props.userNb === 10) return '../public/giraffe.svg'
+    if(props.userNb === 1) return '/chameleon.svg'
+    if(props.userNb === 2) return '/butterfly.svg'
+    if(props.userNb === 3) return '/elk.svg'
+    if(props.userNb === 4) return '/mianyang.svg'
+    if(props.userNb === 5) return '/octopus.svg'
+    if(props.userNb === 6) return '/rooster.svg'
+    if(props.userNb === 7) return '/toucan.svg'
+    if(props.userNb === 8) return '/turtle.svg'
+    if(props.userNb === 9) return '/whale.svg'
+    if(props.userNb === 10) return '/giraffe.svg'
 })
 
 </script>

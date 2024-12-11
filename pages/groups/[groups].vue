@@ -13,7 +13,7 @@
                 <div class="m-4">
                     <NuxtLink to="/about">
                         <div class="flex justify-center items-center gap-1 max-w-32 hover:text-slate-300 transition ease-in-out duration-300">
-                            <NuxtImg src="../public/arrowup.svg" class="h-3 -rotate-90 translate-y-[1px]"></NuxtImg>
+                            <NuxtImg src="/arrowup.svg" class="h-3 -rotate-90 translate-y-[1px]"></NuxtImg>
                             <p>Contact List</p>
                         </div>
                     </NuxtLink>
@@ -66,15 +66,15 @@ const allNamesString = computed(() => {
 })
 
 const imageUrl = function(num) {
-    if(num === 1) return '../public/chameleon.svg'
-    if(num === 2) return '../public/butterfly.svg'
-    if(num === 3) return '../public/elk.svg'
-    if(num === 4) return '../public/mianyang.svg'
-    if(num === 5) return '../public/octopus.svg'
-    if(num === 6) return '../public/rooster.svg'
-    if(num === 7) return '../public/toucan.svg'
-    if(num === 8) return '../public/turtle.svg'
-    if(num === 9) return '../public/whale.svg'
-    if(num === 10) return '../public/giraffe.svg'
+    if(num === 1) return '/chameleon.svg'
+    if(num === 2) return '/butterfly.svg'
+    if(num === 3) return '/elk.svg'
+    if(num === 4) return '/mianyang.svg'
+    if(num === 5) return '/octopus.svg'
+    if(num === 6) return '/rooster.svg'
+    if(num === 7) return '/toucan.svg'
+    if(num === 8) return '/turtle.svg'
+    if(num === 9) return '/whale.svg'
+    if(num === 10) return '/giraffe.svg'
 }
 </script>

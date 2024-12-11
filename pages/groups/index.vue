@@ -13,7 +13,7 @@
                 <div class="m-4">
                     <NuxtLink to="/about">
                         <div class="flex justify-center items-center gap-1 max-w-32 hover:text-slate-300 transition ease-in-out duration-300">
-                            <NuxtImg src="../public/arrowup.svg" class="h-3 -rotate-90 translate-y-[1px]"></NuxtImg>
+                            <NuxtImg src="/arrowup.svg" class="h-3 -rotate-90 translate-y-[1px]"></NuxtImg>
                             <p>Contact List</p>
                         </div>
                     </NuxtLink>

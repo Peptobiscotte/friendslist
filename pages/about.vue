@@ -19,7 +19,7 @@
           <table class="w-full">
               <thead class="">
                   <tr class="text-left">
-                      <th class="py-4 pl-8 font-normal">Name  <button @click="changeArrowClass"><NuxtImg src="../public/arrowup.svg" class="h-3 transition ease-in-out duration-150 translate-y-0.5" :class="arrowClass"></NuxtImg></button></th>
+                      <th class="py-4 pl-8 font-normal">Name  <button @click="changeArrowClass"><NuxtImg src="/arrowup.svg" class="h-3 transition ease-in-out duration-150 translate-y-0.5" :class="arrowClass"></NuxtImg></button></th>
                       <th class="font-normal">Mail</th>
                       <th class="font-normal">Phone</th>
                       <th class="font-normal">Category</th>

@@ -4,7 +4,7 @@
             <nav class="flex">
                 <div class="flex items-center basis-2/5 justify-center gap-8">
                     <NuxtLink to="/" class="flex gap-4">
-                        <NuxtImg src="../public/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
+                        <NuxtImg src="/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
                         <h1 class="text-2xl font-black">&ltFriendsList&gt</h1>
                     </NuxtLink>
                     <ul v-if="token" class="flex py-3 gap-2 font-semibold">
@@ -23,7 +23,7 @@
                 <div class="basis-3/5 flex justify-end">
                     <div class="flex mr-80 gap-4 items-center">
                         <HomeSearchBar v-if="token" :usersName="allUserNameRef" :allUsers="allUsersInfos"></HomeSearchBar>
-                        <NuxtImg src="../public/moon.svg" class="w-8"></NuxtImg>
+                        <NuxtImg src="/moon.svg" class="w-8"></NuxtImg>
                         <div class="flex items-center">
                             <div class="border-r-2 border-slate-800 h-8"></div>
                         </div>
