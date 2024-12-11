@@ -1,5 +1,11 @@
 export default defineNuxtConfig({
-  // ssr: false,
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/giraffe.svg' }
+      ]
+    }
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
