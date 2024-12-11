@@ -21,6 +21,5 @@ export default defineEventHandler(async (event) => {
         };
         messages.push(request);
       }
-      console.log(messages)
       return messages
     })

@@ -9,13 +9,13 @@
                 <NuxtImg src="../public/giraffe.svg" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
                 <h1 class="text-2xl font-bold">{{ targetInfosRef.firstName }}</h1>
             </div>
-            <div class="mt-8 flex flex-col gap-2 bg-slate-800 h-[36rem] mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4">
+            <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 h-[36rem] mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                 <div v-for="message in sortedMessagesRef" class="testclass">
-                    <div v-if="isSame(message.from, loggedIdRef)" class="flex gap-2">
+                    <div v-if="isSame(message.from, loggedIdRef)" class="flex gap-2 items-center">
                         <p class="bg-slate-700 py-1 px-4 rounded-md text-lg max-w-96 break-words ml-auto">{{ message.content }}</p>
                         <p class="text-sm">{{ message.time }}</p>
                     </div>
-                    <div v-else class="flex gap-2">
+                    <div v-else class="flex gap-2 items-center">
                         <p class="text-sm">{{ message.time }}</p>
                         <p class="bg-slate-700 py-1 px-4 rounded-md text-lg">{{ message.content }}</p> 
                     </div>
@@ -119,6 +119,10 @@ const sendMessage = async function() {
         console.error('Error:', err)
     }
     typedMessage.value = ''
+
+    reloadNuxtApp({
+        path: route.fullPath
+    })
 }
 
 const isSame = function(from, to) {
@@ -179,5 +183,14 @@ if(token) {
     
     sortedMessagesRef.value = sortedMessagesTimeFix
 }
+
+onMounted(() => {
+  const target = document.querySelector(".scroll-thingy");
+  const lastChild = target?.lastElementChild;
+  
+  if (lastChild) {
+  lastChild.scrollIntoView({ behavior: "smooth" });
+}
+})
 
 </script>
