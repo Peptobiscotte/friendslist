@@ -37,7 +37,11 @@ const submitForm = async() => {
         groupName : groupName,
         groupMemberIds: groupMemberIds
     }
-    try {
+
+    if(!data.groupName.value || data.groupMemberIds.length === 0) {
+      return
+    } else {
+      try {
         await useFetch('/api/addGroup', {
             method: 'POST',
             body: data,
@@ -55,6 +59,7 @@ const submitForm = async() => {
     }  catch (err) {
       console.error('Error:', err)
     }
+    }  
 }
 
 </script>
