@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       ]
     }
   },
+  css: [
+    '/assets/css/fonts.css',
+  ],
   modules: [
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',

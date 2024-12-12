@@ -3,9 +3,9 @@
         <header>
             <nav class="flex">
                 <div class="flex items-center basis-2/5 justify-center gap-8">
-                    <NuxtLink to="/" class="flex gap-4">
+                    <NuxtLink to="/" class="flex gap-6">
                         <NuxtImg src="/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
-                        <h1 class="text-2xl font-black">&ltFriendsList&gt</h1>
+                        <h1 class="text-2xl font-black font-poppins">&ltFriendsList&gt</h1>
                     </NuxtLink>
                     <ul v-if="token" class="flex py-3 gap-2 font-semibold">
                         <li v-if="route === '' || route === '/'" class="text-md rounded-md  py-1 px-2.5 text-slate-200">Home</li>

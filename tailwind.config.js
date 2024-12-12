@@ -83,6 +83,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "ui-sans-serif", "system-ui"],
+        shol: ["sholfold", "sans-serif"],
       },
     },
   },
