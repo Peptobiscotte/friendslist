@@ -18,7 +18,7 @@ const goToUserMessage = function(event: any) {
     <PopoverTrigger class="bg-slate-800 rounded-md py-1 px-2 hover:bg-slate-700 transition ease-in-out duration-300">
       Send a Message
     </PopoverTrigger>
-    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 p-0">
+    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 p-0 font-poppins">
       <div class="flex flex-col">
         <button @click="goToUserMessage" v-for="user in props.allUsers" :id="user.userId" class="hover:bg-slate-700 px-4 py-2 transition ease-in-out duration-300" >{{ user.firstName }}</button>
       </div>

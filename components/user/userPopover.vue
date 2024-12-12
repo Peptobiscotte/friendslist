@@ -22,7 +22,7 @@ const goToMessages = function() {
     <PopoverTrigger>
       {{ props.firstName }}
     </PopoverTrigger>
-    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 p-0">
+    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 p-0 font-poppins">
       <div class="flex flex-col">
         <button class="hover:bg-slate-700 px-4 py-2 transition ease-in-out duration-300" @click="goToUser">Profile</button>
         <button class="hover:bg-slate-700 px-4 py-2 transition ease-in-out duration-300" @click="goToMessages">Messages</button>

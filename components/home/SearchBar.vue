@@ -4,7 +4,7 @@
       <PopoverTrigger>
         <input v-model="inputText" type="text" class="bg-slate-900 border border-slate-800 rounded-md focus:outline-none focus:border-slate-700 px-2 py-1 text-sm">
       </PopoverTrigger>
-    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 flex flex-col p-0">
+    <PopoverContent class="bg-slate-900 border-slate-700 text-slate-300 flex flex-col p-0 font-poppins">
       <div v-if="inputText" v-for="names in sortedNames" class="p-2 flex justify-center transition ease-in-out duration-300 hover:bg-slate-800"><button @click="linkTo">{{ names }}</button></div>
       <p v-else class="p-2">no result</p>
     </PopoverContent>

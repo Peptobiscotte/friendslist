@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="font-poppins">
         <div class="flex flex-col justify-center items-center m-16 gap-2">
-            <h1 class="text-6xl font-bold">{{ activeUserRef.firstName }} {{ activeUserRef.lastName }}</h1>
+            <h1 class="text-6xl font-bold text-slate-300">{{ activeUserRef.firstName }} {{ activeUserRef.lastName }}</h1>
             <button v-if="!isSame && !alreadyRequested && !isFriend" @click="sendRequest" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 py-1 px-2 rounded-md">+ Friend request</button>
             <p v-else-if="alreadyRequested" class="italic">friend request sent</p>
             <div v-else-if="isFriend" class="flex flex-col items-center gap-4 mt-4">

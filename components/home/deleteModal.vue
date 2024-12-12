@@ -33,7 +33,7 @@ const deleteM = async() => {
 <template>
   <AlertDialog>
     <AlertDialogTrigger><NuxtImg src="/trashcan.svg" class="w-8"></NuxtImg></AlertDialogTrigger>
-    <AlertDialogContent class="bg-slate-800 border-slate-700">
+    <AlertDialogContent class="bg-slate-800 border-slate-700 font-poppins">
       <AlertDialogHeader>
         <AlertDialogTitle class="text-slate-300 text-xl">Are you absolutely sure?</AlertDialogTitle>
         <AlertDialogDescription class="text-slate-400 text-lg">

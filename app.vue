@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gradient-to-br from-slate-900 to-slate-950 min-h-screen text-slate-400">
-    <NuxtLayout/>
+    <NuxtLayout class="font-poppins"/>
     <NuxtPage/>
     <Toaster/>
   </div>

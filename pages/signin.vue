@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center gap-16">
+    <div class="flex flex-col items-center gap-16 font-poppins">
         <div class="flex justify-center mt-20 text-slate-300">
             <h1 class="max-w-5xl text-center text-6xl font-bold">Sign in</h1>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)]">
+    <div class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto pt-4 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <h1 class="text-center text-xl font-semibold mb-4">Messages</h1>
             <UserMessagesList v-for="conv in allConvId" :id="conv.userId" :loggedId="loggedIdRef" :name="conv.firstName"></UserMessagesList>
@@ -7,7 +7,7 @@
         <div class="basis-3/4 2xl:basis-4/5 max-h-screen relative">
             <div class="flex flex-col items-center pt-16 gap-2">
                 <NuxtImg src="/giraffe.svg" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
-                <h1 class="text-2xl font-bold">{{ targetInfosRef.firstName }}</h1>
+                <h1 class="text-2xl font-bold text-slate-300">{{ targetInfosRef.firstName }}</h1>
             </div>
             <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 h-[36rem] mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                 <div v-for="message in sortedMessagesRef" class="testclass">

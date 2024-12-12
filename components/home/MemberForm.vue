@@ -74,7 +74,7 @@ const validateForm = function() {
 <template>
   <Sheet>
     <SheetTrigger class="transition delay-50 duration-500 ease-in-out p-2 border-2 rounded-md text-xl font-medium border-slate-700 hover:bg-slate-700 hover:text-slate-200">+ Add Contact</SheetTrigger>
-    <SheetContent class="bg-slate-900 border-slate-800">
+    <SheetContent class="bg-slate-900 border-slate-800 font-poppins">
       <SheetHeader>
         <SheetTitle class="text-slate-300">Add a new contact</SheetTitle>
         <SheetDescription class="text-slate-400 text-md">

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center border-2 border-slate-700 py-8 px-8 rounded-md">
+    <div class="flex flex-col items-center border-2 border-slate-700 py-8 px-8 rounded-md font-poppins">
         <h1 class="text-4xl font-semibold">{{ fullName }}</h1>
         <p class="italic text-2xl">{{ userDesc }}</p>
     </div>

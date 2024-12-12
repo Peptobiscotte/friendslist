@@ -5,7 +5,7 @@
         <NuxtLink to="/signin" class=" border text-slate-400 border-slate-700 text-lg py-2 px-4 rounded-md hover:bg-slate-700 hover:text-slate-300 transition ease-in-out duration-300">Sign in</NuxtLink>
       </div>
     </div> -->
-    <div>
+    <div class="font-poppins">
       <div class="flex mt-8">
         <div class="flex justify-center basis-1/3">
           <HomeSortButton @sort="sortType = $event"></HomeSortButton>

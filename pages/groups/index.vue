@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)]">
+    <div class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent">
             <div class="flex justify-center p-8">
                 <GroupsAddGroupDialog :contacts="contacts" :userId="userId" :token="token"></GroupsAddGroupDialog>
