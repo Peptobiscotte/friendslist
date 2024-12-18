@@ -10,7 +10,7 @@
             </div>
         </div>
         <div v-if="isSame" class="flex mt-32">
-            <div class="basis-1/2 flex flex-col items-center">
+            <div class="basis-1/2 flex flex-col items-center mb-16">
                 <div class="flex flex-col gap-4 bg-slate-800 border border-slate-700 rounded-md py-8 px-16 items-center">
                     <h1 class="text-xl">Friends requests</h1>
                     <div class="flex gap-2 border-t border-slate-700 pt-4" v-for="request in mergedArray">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="basis-1/2 flex flex-col items-center">
+            <div class="basis-1/2 flex flex-col items-center mb-16">
               <div class="flex flex-col gap-4 bg-slate-800 border border-slate-700 rounded-md py-8 px-16 items-center">
                     <h1 class="text-xl">Friends</h1>
                     <div class="border-t border-slate-700 pt-4" v-for="friend in userFriendsRef">
