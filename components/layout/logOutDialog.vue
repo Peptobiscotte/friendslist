@@ -30,7 +30,7 @@ const handleLogout = function() {
 
 <template>
   <Dialog>
-    <DialogTrigger class="mr-32 -ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">
+    <DialogTrigger class="-ml-32 border border-slate-700 hover:bg-slate-700 rounded-md py-1 px-2 hover:text-slate-300 transition delay-50 duration-500 ease-in-out">
       Log Out
     </DialogTrigger>
     <DialogContent class="bg-slate-800 border-slate-700 font-poppins">

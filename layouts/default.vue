@@ -20,8 +20,8 @@
                         <li v-else class="text-md rounded-md  py-1 px-2.5 transition delay-50 duration-500 ease-in-out hover:text-slate-300"><NuxtLink to="/">Home</NuxtLink></li>  
                     </ul> 
                 </div>
-                <div class="basis-3/5 flex justify-end">
-                    <div class="flex mr-80 gap-4 items-center">
+                <div class="basis-3/5 flex justify-between 2xl:justify-end">
+                    <div class="flex 2xl:mr-80 gap-4 items-center">
                         <HomeSearchBar v-if="token" :usersName="allUserNameRef" :allUsers="allUsersInfos"></HomeSearchBar>
                         <NuxtImg src="/moon.svg" class="w-8"></NuxtImg>
                         <div class="flex items-center">
