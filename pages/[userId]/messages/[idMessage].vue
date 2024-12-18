@@ -5,11 +5,11 @@
             <UserMessagesList v-for="conv in allConvId" :id="conv.userId" :loggedId="loggedIdRef" :name="conv.firstName"></UserMessagesList>
         </div>
         <div class="basis-3/4 2xl:basis-4/5 max-h-screen relative">
-            <div class="flex flex-col items-center pt-16 gap-2">
-                <NuxtImg src="/giraffe.svg" class="h-32 bg-slate-300 rounded-full"></NuxtImg>
+            <div class="flex flex-col items-center pt-8 2xl:pt-16 gap-2">
+                <NuxtImg src="/giraffe.svg" class="2xl:h-32 h-16 bg-slate-300 rounded-full"></NuxtImg>
                 <h1 class="text-2xl font-bold text-slate-300">{{ targetInfosRef.firstName }}</h1>
             </div>
-            <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 h-[36rem] mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+            <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 mx-16 h-24 lg:h-60 lg:mx-24 xl:h-96 xl:mx-36 2xl:h-[36rem] 2xl:mx-48 rounded-md 2xl:max-h-[36rem] py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                 <div v-for="message in sortedMessagesRef" class="testclass">
                     <div v-if="isSame(message.from, loggedIdRef)" class="flex gap-2 items-center">
                         <p class="bg-slate-700 py-1 px-4 rounded-md text-lg max-w-96 break-words ml-auto">{{ message.content }}</p>
@@ -20,18 +20,6 @@
                         <p class="bg-slate-700 py-1 px-4 rounded-md text-lg">{{ message.content }}</p> 
                     </div>
                 </div>
-                <!-- <div class="flex flex-col items-start p-8 gap-2">
-                    <div class="flex gap-2 items-center">
-                        <p class="text-sm">{{ receivedMessages.time }}</p>
-                        <p class="bg-slate-700 py-1 px-4 rounded-md text-lg">{{ receivedMessages.value }}</p> 
-                    </div>
-                </div>
-                <div class="flex flex-col items-end p-8 gap-2 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
-                    <div v-for="message in sentMessages" class="flex gap-2 items-end">
-                        <p class="bg-slate-700 py-1 px-4 rounded-md text-lg max-w-96 break-words">{{ message.value }}</p>
-                        <p class="text-sm">{{ message.time }}</p>
-                    </div>
-                </div> -->
             </div>
             <div class="bg-slate-900/30 border-slate-800 absolute bottom-0 backdrop-blur w-full p-2 flex justify-center">
                 <div class="flex gap-4">
