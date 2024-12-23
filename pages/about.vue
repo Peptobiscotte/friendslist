@@ -53,7 +53,6 @@
 
   const updateScreenSize = () => {
       screenSize.value = window.innerWidth
-      console.log(screenSize.value);
     };
 
   const arrowClass = ref('')

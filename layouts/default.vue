@@ -1,6 +1,6 @@
 <template>
     <div class="border-b-2 bg-slate-900/30 border-slate-800 sticky top-0 backdrop-blur">
-        <header>
+        <header v-if="screenSize > 1000">
             <nav class="flex">
                 <div class="flex items-center basis-2/5 justify-center gap-8">
                     <NuxtLink to="/" class="flex gap-6">
@@ -47,6 +47,19 @@
                 </div>
             </nav>
         </header>
+        <header v-else>
+            <nav class="flex justify-between items-center py-2 px-2">
+                <div>
+                    <NuxtLink to="/" class="flex gap-6">
+                        <NuxtImg src="/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
+                        <h1 class="text-2xl font-black font-poppins">&ltFriendsList&gt</h1>
+                    </NuxtLink>
+                </div>
+                <div class="mr-2" >
+                    <UserPopoverMobile></UserPopoverMobile>
+                </div>
+            </nav>
+        </header>
     </div>
 </template>
 
@@ -62,6 +75,16 @@ const activeUserRef = ref(null)
 const allUserNameRef = ref(null)
 const allUsersInfos = ref(null)
 const requestsArrRef = ref(null)
+const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+    };
+
+onMounted(() => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
+})
 
 const groups = await $fetch('/api/getGroups', {
     query: {
