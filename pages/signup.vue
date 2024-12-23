@@ -1,28 +1,28 @@
 <template>
-    <div class="flex flex-col items-center gap-16 font-poppins">
+    <div class="mx-8 md:mx-0 flex flex-col items-center gap-16 font-poppins">
         <div class="flex justify-center mt-20 text-slate-300">
-            <h1 class="max-w-5xl text-center text-6xl font-bold">Sign up to get started</h1>
+            <h1 class="max-w-5xl text-center text-4xl sm:text-6xl font-bold">Sign up to get started</h1>
         </div>
         <div class="bg-slate-800 border border-slate-700 py-8 px-16 rounded-md">
             <form @submit.prevent="submitForm">
                 <div class="grid grid-rows-2 gap-4">
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col sm:grid sm:grid-cols-4 gap-2 sm:gap-0">
                         <label for="email" class="col-span-1 mr-8 text-slate-200">Email</label>
                         <input @focus="inputClear" v-model.trim="formData.email.value" type="email" name="email" id="email" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.email.class">
                     </div>
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col sm:grid sm:grid-cols-4 gap-2 sm:gap-0">
                         <label for="firstName" class="col-span-1 mr-8 text-slate-200">First Name</label>
                         <input @focus="inputClear" v-model.trim="formData.firstName.value" type="text" name="firstName" id="firstName" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.firstName.class">
                     </div>
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col sm:grid sm:grid-cols-4 gap-2 sm:gap-0">
                         <label for="lastName" class="col-span-1 mr-8 text-slate-200">Last Name</label>
                         <input @focus="inputClear" v-model.trim="formData.lastName.value" type="text" name="lastName" id="lastName" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.lastName.class">
                     </div>
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col sm:grid sm:grid-cols-4 gap-2 sm:gap-0">
                         <label for="phone" class="col-span-1 mr-8 text-slate-200">Phone number</label>
                         <input @focus="inputClear" v-model.trim="formData.phone.value" type="tel" name="phone" id="phone" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.phone.class">
                     </div>
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col sm:grid sm:grid-cols-4 gap-2 sm:gap-0">
                         <label for="password" class="col-span-1 mr-8 text-slate-200">Password</label>
                         <input @focus="inputClear" v-model.trim="formData.password.value" type="password" name="password" id="password" class="bg-slate-800 border rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="formData.password.class">
                     </div>
