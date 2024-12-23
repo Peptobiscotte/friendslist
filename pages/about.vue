@@ -6,16 +6,16 @@
       </div>
     </div> -->
     <div class="font-poppins">
-      <div class="flex mt-8">
-        <div class="flex justify-center basis-1/3">
+      <div class="flex sm:justify-normal mt-8">
+        <div class="flex justify-center basis-1/2 sm:basis-1/3">
           <HomeSortButton @sort="sortType = $event"></HomeSortButton>
         </div>
-        <div class="basis-1/3 flex flex-col justify-center m-auto"></div>
-        <div class="flex justify-center m-auto basis-1/3">
+        <div v-if="screenSize > 515" class="basis-1/3 flex flex-col justify-center"></div>
+        <div class="flex justify-center items-center basis-1/2 sm:basis-1/3">
           <HomeMemberForm @send-data="handleData"></HomeMemberForm>
         </div>
       </div>
-      <div class="flex mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+      <div v-if="screenSize > 700" class="flex md:mx-12 lg:mx-20 xl:mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
           <table class="w-full">
               <thead class="">
                   <tr class="text-left">
@@ -29,6 +29,9 @@
                   <HomeContactTable :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userEmail="contact.userEmail" :userPhone="contact.userPhone" :userType="contact.userType" :userId="contact.userId" :userNb="contact.userNb"></HomeContactTable>
               </tbody>
           </table>
+      </div>
+      <div v-else class="flex flex-col gap-4 mr-8">
+          <HomeMobileTable v-for="contact in usersHelp" :userName="contact.userName" :userLastName="contact.userLastName" :userId="contact.userId" :userNb="contact.userNb"></HomeMobileTable>
       </div>
     </div>
     
@@ -46,6 +49,12 @@
   const sortType = ref('')
   const users = ref([])
   const usersHelp = ref([])
+  const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+      console.log(screenSize.value);
+    };
 
   const arrowClass = ref('')
 
@@ -61,6 +70,8 @@
   
   
   onMounted(async () => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
 
     const userId = useCookie('userId')
     const token = useCookie('token')

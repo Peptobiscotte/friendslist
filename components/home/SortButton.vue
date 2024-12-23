@@ -21,7 +21,7 @@ watch(selectedType, (newType) => {
 
 <template>
   <Select v-model="selectedType" >
-    <SelectTrigger class="w-40 m-8 py-6 rounded-md text-xl border-2 border-slate-700 bg-slate-900">
+    <SelectTrigger class="w-40 m-8 rounded-md text-xl font-medium border-2 border-slate-700 bg-slate-900">
       <SelectValue placeholder="Sort" />
     </SelectTrigger>
     <SelectContent class="rounded-md text-xl border-2 border-slate-700 bg-slate-900 text-slate-400">
