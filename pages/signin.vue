@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-col items-center gap-16 font-poppins">
         <div class="flex justify-center mt-20 text-slate-300">
-            <h1 class="max-w-5xl text-center text-6xl font-bold">Sign in</h1>
+            <h1 class="max-w-5xl text-center text-4xl sm:text-6xl font-bold">Sign in</h1>
         </div>
-        <div class="bg-slate-800 border border-slate-700 py-8 px-16 rounded-md">
+        <div class="bg-slate-800 border border-slate-700 mx-8 py-8 px-16 rounded-md">
             <form @submit.prevent="submitForm">
                 <div class="grid grid-rows-2 gap-4">
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col gap-2 sm:gap-0 sm:grid sm:grid-cols-4">
                         <label for="email" class="col-span-1 mr-8 text-slate-200">Email</label>
                         <input @focus="emailClear" v-model.trim="email.value" type="email" name="email" id="email" class="bg-slate-800 border border-slate-600 rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="errorStyleMail">
                     </div>
-                    <div class="grid grid-cols-4">
+                    <div class="flex flex-col gap-2 sm:gap-0 sm:grid sm:grid-cols-4">
                         <label for="password" class="col-span-1 mr-8 text-slate-200">Password</label>
                         <input @focus="passClear" v-model.trim="password.value" type="password" name="password" id="password" class="bg-slate-800 border border-slate-600 rounded-md py-1 col-span-3 pl-2 focus:outline-none focus:border-slate-300" :class="errorStyle">
                     </div>
