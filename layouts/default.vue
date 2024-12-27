@@ -48,7 +48,7 @@
             </nav>
         </header>
         <header v-else>
-            <nav class="flex justify-between items-center py-2 px-2">
+            <nav v-if="token" class="flex justify-between items-center py-2 px-2">
                 <div>
                     <NuxtLink to="/" class="flex gap-6">
                         <NuxtImg src="/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
@@ -56,7 +56,15 @@
                     </NuxtLink>
                 </div>
                 <div class="mr-2" >
-                    <UserPopoverMobile></UserPopoverMobile>
+                    <UserPopoverMobile :userId="activeUserRef.userId" :firstName="activeUserRef.firstName"></UserPopoverMobile>
+                </div>
+            </nav>
+            <nav v-else class="flex justify-between items-center py-2 px-2">
+                <div>
+                    <NuxtLink to="/" class="flex gap-6">
+                        <NuxtImg src="/giraffe.svg" class="w-8 -mr-4"></NuxtImg>
+                        <h1 class="text-2xl font-black font-poppins">&ltFriendsList&gt</h1>
+                    </NuxtLink>
                 </div>
             </nav>
         </header>
