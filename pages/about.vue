@@ -30,7 +30,7 @@
               </tbody>
           </table>
       </div>
-      <div v-else class="flex flex-col gap-4 mr-8">
+      <div v-else class="flex flex-col gap-2 mr-8">
           <HomeMobileTable v-for="contact in usersHelp" :userName="contact.userName" :userLastName="contact.userLastName" :userId="contact.userId" :userNb="contact.userNb"></HomeMobileTable>
       </div>
     </div>

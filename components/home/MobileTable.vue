@@ -27,10 +27,10 @@ const imageUrl = computed(() => {
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-2 items-center" @click="navigateContact">
-        <div class="flex justify-end">
+    <div class="flex flex-col px-8" @click="navigateContact">
+        <div class="flex items-center gap-2">
             <NuxtImg :src=imageUrl class="w-12 bg-slate-300 rounded-full p-0.5"></NuxtImg>
+            <p class="text-xl">{{ fullName }}</p>
         </div>
-        <p class="text-xl">{{ fullName }}</p>
     </div>
 </template>
