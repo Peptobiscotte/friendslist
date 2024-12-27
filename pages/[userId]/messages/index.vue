@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)] font-poppins">
+    <div v-if="screenSize > 1000" class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto pt-4 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <h1 class="text-center text-xl font-semibold mb-4">Messages</h1>
             <UserMessagesList v-for="conv in allConvId" :id="conv.userId" :loggedId="loggedIdRef" :name="conv.firstName"></UserMessagesList>
@@ -8,6 +8,12 @@
             <div class="flex justify-center items-start">
                 <MessagesMessagePopover :allUsers="allUsersInfosRef" :loggedId="loggedIdRef"></MessagesMessagePopover>
             </div>
+        </div>
+    </div>
+    <div v-else class="font-poppins p-8">
+        <div class="flex flex-col">
+            <h1 class="text-center text-xl font-semibold mb-4">Messages</h1>
+            <UserMessagesList v-for="conv in allConvId" :id="conv.userId" :loggedId="loggedIdRef" :name="conv.firstName"></UserMessagesList>
         </div>
     </div>
 </template>
@@ -71,6 +77,16 @@ if(token) {
             
 }
 
+const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+    };
+
+onMounted(() => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
+})
 
 
 </script>

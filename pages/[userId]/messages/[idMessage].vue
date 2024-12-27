@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)] font-poppins">
+    <div v-if="screenSize > 1000" class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto pt-4 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <h1 class="text-center text-xl font-semibold mb-4">Messages</h1>
             <UserMessagesList v-for="conv in allConvId" :id="conv.userId" :loggedId="loggedIdRef" :name="conv.firstName"></UserMessagesList>
@@ -26,6 +26,30 @@
                     <input @keyup.enter="sendMessage" v-model=typedMessage type="text" class="bg-slate-800 rounded-md w-80 focus:outline-none py-2 px-2">
                     <button @click="sendMessage"><NuxtImg src="/send.svg" class="w-8"></NuxtImg></button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div v-else>
+        <div class="flex flex-col items-center pt-8 2xl:pt-16 gap-2">
+            <NuxtImg src="/giraffe.svg" class="2xl:h-32 h-16 bg-slate-300 rounded-full"></NuxtImg>
+            <h1 class="text-2xl font-bold text-slate-300">{{ targetInfosRef.firstName }}</h1>
+        </div>
+        <div class="scroll-thingy mt-8 flex flex-col gap-2 bg-slate-800 mx-8 h-80 rounded-md py-8 px-4 overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+            <div v-for="message in sortedMessagesRef" class="testclass">
+                <div v-if="isSame(message.from, loggedIdRef)" class="flex gap-2 items-center">
+                    <p class="bg-slate-700 py-1 px-4 rounded-md text-lg max-w-96 break-words ml-auto">{{ message.content }}</p>
+                    <p class="text-sm">{{ message.time }}</p>
+                </div>
+                <div v-else class="flex gap-2 items-center">
+                    <p class="text-sm">{{ message.time }}</p>
+                    <p class="bg-slate-700 py-1 px-4 rounded-md text-lg">{{ message.content }}</p> 
+                </div>
+            </div>
+        </div>
+        <div class="bg-slate-900/30 border-slate-800 absolute bottom-0 backdrop-blur w-full p-2 flex justify-center">
+            <div class="flex gap-4">
+                <input @keyup.enter="sendMessage" v-model=typedMessage type="text" class="bg-slate-800 rounded-md w-80 focus:outline-none py-2 px-2">
+                <button @click="sendMessage"><NuxtImg src="/send.svg" class="w-8"></NuxtImg></button>
             </div>
         </div>
     </div>
@@ -172,7 +196,16 @@ if(token) {
     sortedMessagesRef.value = sortedMessagesTimeFix
 }
 
+const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+    };
+
 onMounted(() => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
+
   const target = document.querySelector(".scroll-thingy");
   const lastChild = target?.lastElementChild;
   
