@@ -1,5 +1,5 @@
 <template>
-    <div class="font-poppins">
+    <div v-if="screenSize > 1000" class="font-poppins">
         <div class="flex flex-col justify-center items-center m-16 gap-2">
             <h1 class="text-6xl font-bold text-slate-300">{{ activeUserRef.firstName }} {{ activeUserRef.lastName }}</h1>
             <button v-if="!isSame && !alreadyRequested && !isFriend" @click="sendRequest" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 py-1 px-2 rounded-md">+ Friend request</button>
@@ -10,6 +10,40 @@
             </div>
         </div>
         <div v-if="isSame" class="flex mt-32">
+            <div class="basis-1/2 flex flex-col items-center mb-16">
+                <div class="flex flex-col gap-4 bg-slate-800 border border-slate-700 rounded-md py-8 px-16 items-center">
+                    <h1 class="text-xl">Friends requests</h1>
+                    <div class="flex gap-2 border-t border-slate-700 pt-4" v-for="request in mergedArray">
+                        <h2>{{ request.firstName }}</h2>
+                        <h2>{{ request.lastName }}</h2>
+                        <button @click="handleRequest" :id=request.requestedId class="ml-16 bg-slate-900 rounded-md py-1 px-2 transition ease-in-out duration-300 hover:bg-slate-700">Accept</button>
+                    </div>
+                </div>
+            </div>
+            <div class="basis-1/2 flex flex-col items-center mb-16">
+              <div class="flex flex-col gap-4 bg-slate-800 border border-slate-700 rounded-md py-8 px-16 items-center">
+                    <h1 class="text-xl">Friends</h1>
+                    <div class="border-t border-slate-700 pt-4" v-for="friend in userFriendsRef">
+                      <button @click="goToFriend" :id="friend.userId" class="flex gap-2">
+                        <h2 :id="friend.userId">{{ friend.firstName }}</h2>
+                        <h2 :id="friend.userId">{{ friend.lastName }}</h2>
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div v-else>
+      <div class="flex flex-col items-center m-16 gap-2">
+            <h1 class="text-center text-4xl font-bold text-slate-300">{{ activeUserRef.firstName }} {{ activeUserRef.lastName }}</h1>
+            <button v-if="!isSame && !alreadyRequested && !isFriend" @click="sendRequest" class="mt-4 bg-slate-900 border border-slate-800 hover:bg-slate-800 py-1 px-2 rounded-md">+ Friend request</button>
+            <p v-else-if="alreadyRequested" class="italic">friend request sent</p>
+            <div v-else-if="isFriend" class="flex flex-col items-center gap-4 mt-4">
+              <p>friend</p>
+              <button @click="goToUserMessage" class="bg-slate-800 rounded-md py-1 px-2 hover:bg-slate-700 transition ease-in-out duration-300">Send a Message</button>
+            </div>
+        </div>
+        <div v-if="isSame" class="flex flex-col">
             <div class="basis-1/2 flex flex-col items-center mb-16">
                 <div class="flex flex-col gap-4 bg-slate-800 border border-slate-700 rounded-md py-8 px-16 items-center">
                     <h1 class="text-xl">Friends requests</h1>
@@ -224,4 +258,14 @@ const goToUserMessage = function() {
     navigateTo(`/${loggedUserRef.value.userId}/messages/${activeUserRef.value.userId}`)
 }
 
+const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+    };
+
+onMounted(() => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
+})
 </script>
