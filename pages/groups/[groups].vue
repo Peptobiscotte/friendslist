@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)] font-poppins">
+    <div v-if="screenSize > 1000" class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent">
             <div class="flex justify-center p-8">
                 <GroupsAddGroupDialog :contacts="contacts" :userId="userId" :token="token"></GroupsAddGroupDialog>
@@ -24,6 +24,13 @@
                 <h1 class="text-4xl text-slate-300 font-bold">{{ activeGroup.groupName }}</h1>
                 <h2 class="text-xl text-slate-400 font-semibold">{{ allNamesString }}</h2>
             </div>
+        </div>
+    </div>
+    <div v-else class="font-poppins p-8">
+        <div class="flex flex-col items-center gap-4">
+            <NuxtImg :src="imageUrl(activeMembers[0].userNb)" class="h-16 bg-slate-300 rounded-full"></NuxtImg>
+            <h1 class="text-4xl text-slate-300 font-bold">{{ activeGroup.groupName }}</h1>
+            <h2 class="text-xl text-slate-400 font-semibold">{{ allNamesString }}</h2>
         </div>
     </div>
 </template>
@@ -77,4 +84,15 @@ const imageUrl = function(num) {
     if(num === 9) return '/whale.svg'
     if(num === 10) return '/giraffe.svg'
 }
+
+const screenSize = ref('')
+
+const updateScreenSize = () => {
+    screenSize.value = window.innerWidth
+  };
+
+onMounted(() => {
+  updateScreenSize()
+  window.addEventListener('resize', updateScreenSize);
+})
 </script>

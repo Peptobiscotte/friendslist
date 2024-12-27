@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)] font-poppins">
+    <div v-if="screenSize > 1000" class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent">
             <div class="flex justify-center p-8">
                 <GroupsAddGroupDialog :contacts="contacts" :userId="userId" :token="token"></GroupsAddGroupDialog>
@@ -24,6 +24,12 @@
             </div>
         </div>
     </div>
+    <div v-else class="flex flex-col items-center font-poppins p-8 gap-8">
+        <GroupsAddGroupDialog :contacts="contacts" :userId="userId" :token="token"></GroupsAddGroupDialog>
+        <div v-for="group in groups">
+            <GroupsListComp :groupName="group.groupName" :groupMembers="group.groupMembers" :contacts="contacts" :groupId="group.groupId"></GroupsListComp>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -42,4 +48,15 @@ const token = useCookie('token')
             token: token.value
         }
     })
+
+const screenSize = ref('')
+
+const updateScreenSize = () => {
+    screenSize.value = window.innerWidth
+  };
+
+onMounted(() => {
+  updateScreenSize()
+  window.addEventListener('resize', updateScreenSize);
+})
 </script>
