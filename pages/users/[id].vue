@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-[calc(100vh-57px)] font-poppins">
+    <div v-if="screenSize > 1000" class="flex h-[calc(100vh-57px)] font-poppins">
         <div class="basis-1/4 2xl:basis-1/5 border-r-2 border-slate-800 flex flex-col overflow-auto pt-8 scrollbar scrollbar-thumb-slate-700 scrollbar-track-transparent max-h-screen">
             <div v-for="contact in dataSorted">
                 <HomeContactDetailList :userName="contact.userName" :userLastName="contact.userLastName" :userDesc="contact.userDesc" :userNb="contact.userNb" :userId="contact.userId"></HomeContactDetailList>
@@ -38,6 +38,27 @@
                     <NuxtImg src="/phone.svg" class="h-8"></NuxtImg>
                     <h2 class="text-xl font-medium">{{ member.userPhone }}</h2>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div v-else class="font-poppins p-8 flex flex-col gap-8">
+        <div class="flex flex-col items-center gap-4">
+            <NuxtImg :src=imageUrl class="h-16 bg-slate-300 rounded-full"></NuxtImg>
+            <h1 class="text-4xl text-slate-300 font-bold">{{ fullName }}</h1>
+            <h2 class="text-xl text-slate-400 font-semibold">{{ userDesc }}</h2>
+        </div>
+        <div class="mx-16 mt-8 flex flex-col gap-8">
+            <div class="flex gap-6 items-center">
+                <NuxtImg src="/family.svg" class="h-8"></NuxtImg>
+                <h2 class="text-lg font-medium">{{ member.userType }}</h2>
+            </div>
+            <div class="flex gap-6 items-center">
+                <NuxtImg src="/mail.svg" class="h-8"></NuxtImg>
+                <h2 class="text-lg font-medium">{{ member.userEmail }}</h2>
+            </div>
+            <div class="flex gap-6 items-center">
+                <NuxtImg src="/phone.svg" class="h-8"></NuxtImg>
+                <h2 class="text-lg font-medium">{{ member.userPhone }}</h2>
             </div>
         </div>
     </div>
@@ -92,5 +113,16 @@ const imageUrl = computed(() => {
     if(member.value.userNb === 8) return '/turtle.svg'
     if(member.value.userNb === 9) return '/whale.svg'
     if(member.value.userNb === 10) return '/giraffe.svg'
+})
+
+const screenSize = ref('')
+
+  const updateScreenSize = () => {
+      screenSize.value = window.innerWidth
+    };
+
+onMounted(() => {
+    updateScreenSize()
+    window.addEventListener('resize', updateScreenSize);
 })
 </script>
