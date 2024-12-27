@@ -4,6 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import MobileLogOutDialog from '../layout/mobileLogOutDialog.vue';
 
 const props = defineProps(['userId', 'firstName'])
 
@@ -34,6 +35,7 @@ const goToMessages = function() {
             <button @click="goToMessages" class="pb-2">Messages</button>
         </div>
         <div>
+          <MobileLogOutDialog></MobileLogOutDialog>
         </div>
       </div>
     </PopoverContent>
