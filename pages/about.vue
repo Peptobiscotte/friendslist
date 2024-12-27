@@ -6,13 +6,21 @@
       </div>
     </div> -->
     <div class="font-poppins">
-      <div class="flex sm:justify-normal mt-8">
+      <div v-if="screenSize > 450" class="flex sm:justify-normal mt-8">
         <div class="flex justify-center basis-1/2 sm:basis-1/3">
           <HomeSortButton @sort="sortType = $event"></HomeSortButton>
         </div>
         <div v-if="screenSize > 515" class="basis-1/3 flex flex-col justify-center"></div>
         <div class="flex justify-center items-center basis-1/2 sm:basis-1/3">
           <HomeMemberForm @send-data="handleData"></HomeMemberForm>
+        </div>
+      </div>
+      <div v-else class="flex flex-col">
+        <div class="flex justify-center pt-8">
+          <HomeMemberForm></HomeMemberForm>
+        </div>
+        <div class="flex justify-start">
+          <HomeSortButton></HomeSortButton>
         </div>
       </div>
       <div v-if="screenSize > 700" class="flex md:mx-12 lg:mx-20 xl:mx-60 max-h-[24rem] 2xl:max-h-[36rem] overflow-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
